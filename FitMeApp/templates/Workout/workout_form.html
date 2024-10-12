@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Workouts
+{% endblock title %}
+
+{% block content %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>{% if object %}Modifier Workout{% else %}Créer un Workout{% endif %}</h2>
+                    <div class="bt-option">
+                        <a href="{% url 'home' %}">Home</a>
+                        <span>{% if object %}Modifier Workout{% else %}Créer un Workout{% endif %}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Workout Form Section Begin -->
+<section class="workout-form-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title chart-title">
+                    <span>Gestion des Workouts</span>
+                    <h2>{% if object %}Modifier le Workout{% else %}Créer un nouveau Workout{% endif %}</h2>
+                </div>
+                <div class="leave-comment">
+                <!-- Formulaire Workout -->
+                <form method="post">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-primary">{% if object %}Mettre à jour{% else %}Créer{% endif %}</button>
+
+                </form>
+            </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-title chart-calculate-title">
+                    <span>Informations supplémentaires</span>
+                    <h2>Détails sur l'ajout du Workout</h2>
+                </div>
+                <p>Vous pouvez ajouter ou modifier un workout, ainsi que l’associer à des exercices existants ou en créer de nouveaux.</p>
+                <p>Assurez-vous de bien remplir tous les champs pour créer un workout complet.</p>
+                <!-- Bouton "Créer Exercice" -->
+                <a href="{% url 'create_exercise' %}" class="btn btn-success mb-3">Créer Exercice</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Workout Form Section End -->
+{% endblock content %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Workouts
+{% endblock title %}
+
+{% block content %}
+<h2>Confirmer la suppression de {{ workout.name }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Supprimer</button>
+    <a href="{% url 'workout_list' %}">Annuler</a>
+</form>
+{% endblock content %}

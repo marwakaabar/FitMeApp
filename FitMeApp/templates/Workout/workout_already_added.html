@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Delete Workouts
+{% endblock title %}
+
+{% block content %}
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>Le workout {{ workout.name }} est deja ajouté </h2>
+                    <p>Ce workout est déjà dans votre liste de tâches.</p>
+                    <a href="{% url 'todo_list' %}">Retourner à la liste de tâches</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

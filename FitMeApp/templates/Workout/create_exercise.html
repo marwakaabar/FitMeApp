@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Créer un Exercice
+{% endblock title %}
+
+{% block content %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>Créer un Exercice</h2>
+                    <div class="bt-option">
+                        <a href="{% url 'home' %}">Home</a>
+                        <span>Créer un Exercice</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Exercise Form Section Begin -->
+<section class="exercise-form-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title chart-title">
+                    <h2>Ajouter un nouvel Exercice</h2>
+                </div>
+                <div class="leave-comment">
+                    <!-- Formulaire Exercice -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            {% for field in form %}
+                                <div class="col-md-6">
+                                    {{ field.label_tag }}
+                                    {{ field }}
+                                </div>
+                                {% if forloop.counter|divisibleby:2 %}
+                                    </div>
+                                    <div class="row mb-3">
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Créer</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-title chart-calculate-title">
+                    <span>Informations supplémentaires</span>
+                    <h2>Détails sur l'ajout de l'Exercice</h2>
+                </div>
+                <p>Vous pouvez créer un exercice et l'associer à des workouts existants.</p>
+                <p>Assurez-vous de remplir tous les champs pour ajouter un exercice complet.</p>
+                <!-- Bouton "Retour à la création de workout" -->
+                <a href="{% url 'workout_create' %}" class="btn btn-secondary mt-3">Retour à la création de Workout</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Exercise Form Section End -->
+{% endblock content %}

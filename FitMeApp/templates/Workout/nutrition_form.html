@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Analyse Nutritionnelle
+{% endblock title %}
+
+{% block content %}
+<!-- Breadcrumb Section Begin -->
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb-bg.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb-text">
+                    <h2>Analyse Nutritionnelle</h2>
+                    <div class="bt-option">
+                        <a href="{% url 'home' %}">Home</a>
+                        <span>Analyse Nutritionnelle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Breadcrumb Section End -->
+
+<!-- Nutrition Analysis Form Section Begin -->
+<section class="nutrition-analysis-form-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="section-title chart-title">
+                    <span>Analysez votre recette</span>
+                    <h2>Entrez les détails de votre recette</h2>
+                </div>
+                <div class="leave-comment">
+                    <!-- Formulaire d'analyse nutritionnelle -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <textarea name="recipe" rows="10" cols="50" placeholder="Entrez votre recette ici..."></textarea><br>
+                        <button type="submit" class="btn btn-primary">Analyser</button>
+                    </form>
+                    {% if error %}
+                        <p style="color: red;">{{ error }}</p>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="section-title chart-calculate-title">
+                    <span>Informations supplémentaires</span>
+                    <h2>Détails sur l'analyse nutritionnelle</h2>
+                </div>
+                <p>Entrez votre recette pour obtenir une analyse nutritionnelle détaillée. Cela vous aidera à comprendre la valeur nutritionnelle de vos plats.</p>
+                <p>Assurez-vous de bien remplir le champ ci-dessus pour obtenir les résultats les plus précis.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Nutrition Analysis Form Section End -->
+{% endblock content %}
